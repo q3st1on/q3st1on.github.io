@@ -1,3 +1,5 @@
+baseURL = '/'
+canonifyURLs = true
 title = 'q3st1on'
 theme = 'rusty-typewriter'
 enableEmoji = true
