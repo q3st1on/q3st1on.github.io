@@ -10,6 +10,10 @@ taxonomies = ['tags','types','series']
 countTaxonomy = 3
 sidePaneSticky = true
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [taxonomies]
 tag = 'tags'
 type = 'types'
