@@ -1,0 +1,6 @@
+{{ $svg := resources.Get . }}
+{{ if $svg }}
+  {{ $svg.Content | safeHTML }}
+{{ else }}
+  {{ errorf "SVG not found: %s" . }}
+{{ end }}

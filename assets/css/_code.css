@@ -1,0 +1,274 @@
+:root {
+  --code-current-line: #44475a;
+  --code-foreground: #efeae1;
+  --code-comment: #6272a4;
+  --code-cyan: #8be9fd;
+  --code-green: #00cca0;
+  --code-orange: #faba09;
+  --code-gold: #faba09;
+  --code-purple: #ac80ff;
+  --code-red: #f92472;
+  --code-pink: #ff695a;
+}
+
+/* Code-block container */
+
+.highlight {
+  padding: 8px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--bg-dark);
+  border-radius: 3px;
+  background-color: #070b14;
+  font-family: 'IBM Plex Mono';
+  font-weight: 450;
+}
+
+.highlight .chroma {
+  margin: 0;
+  padding: 0.9rem 0.2rem;
+  color: var(--code-foreground);
+  background-color: #070b14;
+  font-family: 'IBM Plex Mono';
+  font-weight: 450;
+}
+
+/* Selection */
+
+.highlight .chroma ::selection {
+  color: #fff;
+  background-color: #070b14;
+  text-shadow: none;
+}
+
+/* Highlighted lines */
+
+.chroma .hl {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Plain text, whitespace and punctuation */
+
+.chroma {
+    font-family: IBM Plex Mono;
+    font-weight: normal;
+    background-color: #070b14 !important;
+}
+
+.chroma,
+.chroma .w,
+.chroma .p {
+  color: var(--code-foreground);
+}
+
+/* Errors */
+
+.chroma .err {
+  color: var(--code-red);
+}
+
+/* Comments */
+
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cpf {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+/* Preprocessor comments and metadata */
+
+.chroma .cp {
+  color: var(--code-green);
+  font-weight: bold;
+}
+
+/* Keywords */
+
+.chroma .kn {
+  color: var(--code-red);
+}
+
+.chroma .k,
+.chroma .kd,
+.chroma .kp,
+.chroma .kr {
+  color: var(--code-gold);
+  font-weight: bold;
+}
+
+/* Keyword constants: true, false, null, etc. */
+
+.chroma .kc {
+  color: var(--code-cyan);
+}
+
+/* Types */
+
+.chroma .kt {
+  color: var(--code-green);
+  font-weight: bold;
+}
+
+/* Operators */
+
+.chroma .o,
+.chroma .ow {
+  color: var(--code-red);
+}
+
+/* Names and variables */
+
+.chroma .n,
+.chroma .nx,
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi,
+.chroma .vm {
+  color: var(--code-foreground);
+}
+
+/* Properties */
+
+.chroma .py {
+  color: var(--code-foreground);
+}
+
+/* Functions and definitions */
+
+.chroma .nf,
+.chroma .fm {
+  color: var(--code-cyan);
+  font-weight: bold;
+}
+
+/* Classes, namespaces and type-like names */
+
+.chroma .nc {
+  color: var(--code-cyan);
+}
+
+/* Built-ins and pseudo-built-ins */
+
+.chroma .nb,
+.chroma .bp {
+  color: var(--code-cyan);
+}
+
+/* Constants */
+
+.chroma .no {
+  color: var(--code-purple);
+}
+
+/* Decorators, labels and metadata-like names */
+
+.chroma .nd,
+.chroma .ni,
+.chroma .nl {
+  color: var(--code-green);
+}
+
+/* HTML/XML tags */
+
+.chroma .nt {
+  color: var(--code-gold);
+}
+
+/* HTML/XML attributes */
+
+.chroma .na {
+  color: var(--code-green);
+}
+
+/* Strings */
+
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s1,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .ss {
+  color: var(--code-pink);
+}
+
+/* Numbers */
+
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+  color: var(--code-purple);
+}
+
+/* Markdown headings */
+
+.chroma .gh,
+.chroma .gu {
+  color: var(--code-cyan);
+}
+
+/* Markdown emphasis */
+
+.chroma .ge {
+  font-style: italic;
+}
+
+.chroma .gs {
+  font-weight: bold;
+}
+
+/* Inserted and deleted text, such as diffs */
+
+.chroma .gd {
+  color: var(--code-pink);
+}
+
+.chroma .gi {
+  color: var(--code-green);
+}
+
+/* Other generic output */
+
+.chroma .go {
+  color: var(--code-comment);
+}
+
+.chroma .gp {
+  color: var(--code-green);
+}
+
+/* Line numbers */
+
+.chroma .ln,
+.chroma .lnt {
+  color: var(--code-comment);
+
+  user-select: none;
+}
+
+/* Prevent line-number backgrounds overriding the block */
+
+.chroma .lntd,
+.chroma .lntable {
+  border: 0;
+  background: transparent;
+}
+
+.chroma .line {
+    font-family: "IBM Plex Mono";
+}

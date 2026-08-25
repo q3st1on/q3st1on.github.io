@@ -1,0 +1,38 @@
+{{- define "main" -}}
+  {{- $title := partial "title.html" . }}
+  {{- $i18nTaxonomy := printf "taxonomies.%s" (lower $title) }}
+  <h1>{{- i18n (lower $i18nTaxonomy) | default $title -}}</h1>
+  {{- .Content -}}
+  {{- $pages := (.Paginate (.Pages.GroupByDate "2006") site.Params.rtwt.countPageItems) -}}
+  {{- range $pages.PageGroups -}}
+    <div class="list-group-key">{{- .Key -}}</div>
+    {{- range .Pages -}}
+    {{- if hasPrefix .RelPermalink "/archive" -}}
+        <div class="list-group-heading-archive">
+          <a href="{{- .RelPermalink -}}">{{- partial "title.html" . -}}</a>
+          <div><div class="list-group-archive-badge">Archived</div></div> 
+          <div class="list-group-archive-time"> 
+            <time class="dim" style="float: right;" datetime="2023-05-02T00:00:00Z">
+              {{- dateFormat (or .Site.Params.dateFormat "Jan 2") .Date -}}
+            </time>
+          </div>
+        </div>
+      {{- else -}}
+        <div class="list-group-heading">
+          <a href="{{- .RelPermalink -}}">{{- partial "title.html" . -}}</a>
+          <time class="dim" style="float: right;" datetime="2023-05-02T00:00:00Z">
+            {{- dateFormat (or .Site.Params.dateFormat "Jan 2") .Date -}}
+          </time>
+        </div>
+      {{- end -}}
+      <div class="list-group-summary content-font">{{- partial "components/summary.html" . -}}</div>
+    {{- end -}}
+  {{- end -}}
+  {{ template "_internal/pagination.html" . }}
+{{- end -}}
+
+{{- define "side" -}}
+  <!-- <aside id="side-pane" class="{{- cond site.Params.rtwt.side.list.sidePaneSticky "side-sticky" "" -}}">
+    {{- partial "side/list.html" . -}}
+  </aside> -->
+{{- end -}}

@@ -1,0 +1,34 @@
+details {
+  margin-block: 1rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.25rem;
+  background: var(--background-color);
+}
+
+details > summary {
+  padding: 0.75rem 1rem;
+  color: var(--secondary-color);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+details > summary:hover {
+  background: color-mix(
+    in srgb,
+    var(--secondary-color) 10%,
+    transparent
+  );
+}
+
+details[open] > summary {
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+details > :not(summary) {
+  margin-inline: 1rem;
+}
+
+details > :last-child {
+  margin-bottom: 1rem;
+}

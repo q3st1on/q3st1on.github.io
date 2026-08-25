@@ -1,0 +1,36 @@
+.footnote-ref::before {
+    content: "[";
+}
+
+.footnote-ref::after {
+    content: "]";
+}
+
+/* Optional: Adjust link spacing slightly for the brackets */
+.footnote-ref {
+    text-decoration: none;
+    padding: 0 1px;
+}
+
+/* Hide default numbers at the bottom */
+.footnotes ol {
+    list-style-type: none; 
+    counter-reset: HugoFootnotes;
+    padding-left: 0;
+}
+
+/* Position each list item to allow absolute positioning */
+.footnotes li {
+    counter-increment: HugoFootnotes;
+    position: relative;
+    padding-left: 2.5em; /* Creates space for the bracketed number */
+    margin-bottom: 0.5em;
+}
+
+/* Insert the custom bracketed number */
+.footnotes li::before {
+    content: "[" counter(HugoFootnotes) "]";
+    position: absolute;
+    left: 0;
+    color: inherit; /* Matches your body text colour */
+}
