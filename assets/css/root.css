@@ -188,10 +188,14 @@
   --secondary-color: var(--color-gold-dark);
   --selection-color: #dda19b;
 
-  --dim-opacity: 65%;
-  --note-color: #03a5c9;
+
   --code-text-color: var(--color-gold-dark);
   --code-background-color: rgba(0,0,0,0.1);
+  
+  --dim-opacity: 65%;
+  --note-color: #03a5c9;
+
+  --popup-background-mask: rgba(0,0,0,0.5)
 }
 
 :root[color-scheme^='dark'] {
@@ -199,13 +203,15 @@
   --body-text-color: var(--color-light);
   --body-background-color: var(--color-dark);
 
-  --code-background-color: #ffffff10;
-  --code-text-color: #feb32b;
-
   --primary-color: var(--color-gold);
   --secondary-color: var(--color-coral);
   --selection-color: var(--color-coral);
 
+  --code-text-color: #feb32b;
+  --code-background-color: #ffffff10;
+
   --dim-opacity: 50%;
   --note-color: #8be9fd;
+
+  --popup-background-mask: rgba(255,255,255,0.1)
 }
